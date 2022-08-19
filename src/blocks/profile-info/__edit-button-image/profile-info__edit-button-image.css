@@ -1,0 +1,16 @@
+.profile-info__edit-button-image {
+    display: flex;
+    margin-left: 4px;
+    width: 7.5px;
+    height: 7.5px;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 767px) {
+    .profile-info__edit-button-image {
+        display: inline;
+        margin: 0;
+        width: 10px;
+        height: 10px;
+    }
+}
