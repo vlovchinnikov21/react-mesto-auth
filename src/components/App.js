@@ -174,13 +174,13 @@ function App() {
             onCardDelete={handleCardDelete}
             onCardLike={handleCardLike}
           />
-          <Route path="/sign-in">
+          <Route path="/sign-up">
             <Register
               isOpen={isEditProfilePopupOpen}
               onRegister={handleRegister}
             />
           </Route>
-          <Route path="/sign-up">
+          <Route path="/sign-in">
             <Login isOpen={isEditProfilePopupOpen} onAuth={handleAuth} />
           </Route>
         </Switch>
