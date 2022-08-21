@@ -13,11 +13,12 @@ import { api } from '../utils/api';
 import * as auth from '../utils/auth';
 import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
+import Register from './Register';
 
 function App() {
   const history = useHistory();
 
-  const [loggenIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
 
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
@@ -44,6 +45,27 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    tokenCheck();
+  }, []);
+
+  function tokenCheck() {
+    const jwt = localStorage.getItem('jwt');
+
+    if (jwt) {
+      auth
+        .getContent(jwt)
+        .then((res) => {
+          if (res) {
+            setLoggedIn(true);
+            setEmail(res.data.email);
+            history.push('/');
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+  }
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
@@ -128,6 +150,12 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleRegister(password, email) {
+    auth.register(password, email).then((res) => {
+      setEmail(res.data.email);
+    });
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -147,6 +175,12 @@ function App() {
             onCardLike={handleCardLike}
           />
           <Route path="/sign-in">
+            <Register
+              isOpen={isEditProfilePopupOpen}
+              onRegister={handleRegister}
+            />
+          </Route>
+          <Route path="/sign-up">
             <Login isOpen={isEditProfilePopupOpen} onAuth={handleAuth} />
           </Route>
         </Switch>

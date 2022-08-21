@@ -5,8 +5,8 @@ export default function AuthPage({
   formName,
   onSubmit,
   title,
-  btnText,
   children,
+  btnText,
 }) {
   return (
     <div className="auth-page">
