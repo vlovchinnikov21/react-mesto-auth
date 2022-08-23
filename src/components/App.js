@@ -151,19 +151,24 @@ function App() {
   }
 
   function handleRegister(password, email) {
-    auth.register(password, email).then((res) => {
+    auth.register(password, email)
+    .then((res) => {
       setEmail(res.data.email);
     });
+  }
+
+  function onSignOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
   }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header />
+        <Header loggedIn={loggedIn} email={email} onSignOut={onSignOut} />
         <Switch>
           <ProtectedRoute
-            exact
-            path="/"
+            exact path="/"
             loggenIn={loggedIn}
             component={Main}
             onEditProfile={handleEditProfileClick}

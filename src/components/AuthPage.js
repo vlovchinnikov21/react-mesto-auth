@@ -22,7 +22,7 @@ export default function AuthPage({
           {btnText}
         </button>
         {formName === 'register' && (
-          <Link className="auth-page__link" to="/sign-up">
+          <Link className="auth-page__link" to="/sign-in">
             Уже зарегистрированы? Войти
           </Link>
         )}
