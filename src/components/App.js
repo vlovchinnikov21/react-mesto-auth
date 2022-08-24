@@ -14,12 +14,18 @@ import * as auth from '../utils/auth';
 import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
 import Register from './Register';
+import InfoTooltip from './InfoTooltip';
+import accept from '../images/confirm-img.svg';
+import decline from '../images/decline-img.svg';
 
 function App() {
   const history = useHistory();
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [email, setEmail] = useState('');
+
+  const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
+  const [message, setMessage] = useState({ imgPath: '', text: '' });
 
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
@@ -135,6 +141,7 @@ function App() {
     setEditAvatarPopupOpen(false);
     setAddPlacePopupOpen(false);
     setSelectedCard(null);
+    setIsInfoTooltipPopupOpen(false);
   }
 
   function onCardClick(card) {
@@ -155,9 +162,19 @@ function App() {
   }
 
   function handleRegister(password, email) {
-    auth.register(password, email).then((res) => {
-      setEmail(res.data.email);
-    });
+    auth
+      .register(password, email)
+      .then((res) => {
+        setEmail(res.data.email);
+        setMessage({ imgPath: accept, text: 'Вы успешно зарегистрировались!' });
+      })
+      .catch(() =>
+        setMessage({
+          imgPath: decline,
+          text: 'Что-то пошло не так! Попробуйте еще раз.',
+        })
+      )
+      .finally(() => setIsInfoTooltipPopupOpen(true));
   }
 
   function onSignOut() {
@@ -195,6 +212,13 @@ function App() {
         </Switch>
         <Footer />
       </div>
+
+      <InfoTooltip
+        isOpen={isInfoTooltipPopupOpen}
+        onClose={closeAllPopups}
+        title={message.text}
+        imgPath={message.imgPath}
+      />
 
       <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
