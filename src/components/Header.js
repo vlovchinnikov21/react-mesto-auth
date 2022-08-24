@@ -9,19 +9,23 @@ function Header({ loggedIn, email, onSignOut }) {
   return (
     <header className="header">
       <img src={mainLogo} alt="лого-место" className="logo" />
-      {
-        loggedIn ? 
-        <UserInfo email={email} loggedIn={loggedIn} onSignOut={onSignOut} /> : 
-        (<>
-          {
-            location.pathname === '/sign-in' ?
-            <Link className="header__link" to="/sign-up">Регистрация</Link>:
-            <Link className="header__link" to="/sign-in">Войти</Link>
-          }
-        </>)
-      }
+      {loggedIn ? (
+        <UserInfo email={email} loggedIn={loggedIn} onSignOut={onSignOut} />
+      ) : (
+        <>
+          {location.pathname === '/sign-in' ? (
+            <Link className="header__link header__link_position" to="/sign-up">
+              Регистрация
+            </Link>
+          ) : (
+            <Link className="header__link header__link_position" to="/sign-in">
+              Войти
+            </Link>
+          )}
+        </>
+      )}
     </header>
-  )
+  );
 }
 
 export default withRouter(Header);
