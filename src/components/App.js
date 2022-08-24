@@ -29,22 +29,26 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
-    api
-      .getUserProfile()
-      .then((items) => {
-        setCurrentUser(items);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (loggedIn) {
+      api
+        .getUserProfile()
+        .then((items) => {
+          setCurrentUser(items);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
 
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((items) => {
-        setCards(items);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (loggedIn) {
+      api
+        .getInitialCards()
+        .then((items) => {
+          setCards(items);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [loggedIn]);
 
   useEffect(() => {
     tokenCheck();
@@ -151,8 +155,7 @@ function App() {
   }
 
   function handleRegister(password, email) {
-    auth.register(password, email)
-    .then((res) => {
+    auth.register(password, email).then((res) => {
       setEmail(res.data.email);
     });
   }
@@ -168,7 +171,8 @@ function App() {
         <Header loggedIn={loggedIn} email={email} onSignOut={onSignOut} />
         <Switch>
           <ProtectedRoute
-            exact path="/"
+            exact
+            path="/"
             loggedIn={loggedIn}
             component={Main}
             onEditProfile={handleEditProfileClick}
