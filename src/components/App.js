@@ -169,7 +169,7 @@ function App() {
         <Switch>
           <ProtectedRoute
             exact path="/"
-            loggenIn={loggedIn}
+            loggedIn={loggedIn}
             component={Main}
             onEditProfile={handleEditProfileClick}
             onEditAvatar={handleEditAvatarClick}
