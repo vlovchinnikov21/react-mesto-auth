@@ -174,7 +174,10 @@ function App() {
           text: 'Что-то пошло не так! Попробуйте еще раз.',
         })
       )
-      .finally(() => setIsInfoTooltipPopupOpen(true));
+      .finally(() => {
+        setIsInfoTooltipPopupOpen(true)
+      history.push('/')
+      });
   }
 
   function onSignOut() {
