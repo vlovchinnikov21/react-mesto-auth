@@ -23,8 +23,8 @@
 * Добавить адаптив под мобильные устройства
 * Перенести валидацию на React.js
 
-* [Ссылка на проект на JS в GitHubPages](https://vlovchinnikov21.github.io/mesto/)
-* [Ссылка на проект на React в GitHubPages](https://vlovchinnikov21.github.io/mesto-react/)
+
+* [Ссылка на проект в GitHubPages](https://vlovchinnikov21.github.io/react-mesto-auth/)
 
 # Начало работы с Create React App
 
