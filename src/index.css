@@ -20,7 +20,6 @@
 
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__add-button/profile__add-button.css);
-@import url(./blocks/profile/__add-button-image/profile__add-button-image.css);
 @import url(./blocks/profile-info/profile-info.css);
 @import url(./blocks/profile-info/__avatar/profile-info__avatar.css);
 @import url(./blocks/profile-info/__avatar-button/profile-info__avatar-button.css);
@@ -30,7 +29,6 @@
 @import url(./blocks/profile-info/__name/profile-info__name.css);
 @import url(./blocks/profile-info/__description/profile-info__description.css);
 @import url(./blocks/profile-info/__edit-button/profile-info__edit-button.css);
-@import url(./blocks/profile-info/__edit-button-image/profile-info__edit-button-image.css);
 
 /* Places */
 
